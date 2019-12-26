@@ -8,9 +8,9 @@ function App() {
   return (
       <div className="App">
         <header className="App-header">
-          <Logo name="this is a react"/>
+          <Logo text="this is a react"/>
+          <ToDo/>
         </header>
-        <ToDo/>
       </div>
   );
 }

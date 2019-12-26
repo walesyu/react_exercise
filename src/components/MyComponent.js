@@ -14,7 +14,7 @@ export default class MyButton extends React.Component {
 
   render() {
     const {slot} = this.props;
-    return <Button variant="contained" color={this.props.color}>
+    return <Button variant="contained" color={this.props.color} onClick={this.props.onClick}>
       {slot} {this.props.text}
     </Button>
   }
