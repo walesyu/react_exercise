@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from "../logo.svg";
-import Button from '@material-ui/core/Button';
 import '../App.css';
-import  HomeIcon from '@material-ui/icons/Home'
+import HomeIcon from '@material-ui/icons/Home'
+import DeleteIcon from '@material-ui/icons/Delete'
+import Grid from '@material-ui/core/Grid'
+import MyButton from "./MyComponent";
+import {MySpan} from "./MyComponent";
 
 export default class Logo extends React.Component {
   constructor(props) {
@@ -12,13 +15,18 @@ export default class Logo extends React.Component {
 
   render() {
     return (
-        <p>
+        <div>
           <img src={logo} className="App-logo" alt="logo"/>
-          <Button variant="contained" color="primary">
-            <HomeIcon color="secondary" />
-            <span style={{color: this.state.color}}>{this.props.name}</span>
-          </Button>
-        </p>
+          <Grid container spacing={3}>
+            <Grid item sm={6}>
+              <MyButton variant="contained" color="primary" text="hello" slot={<HomeIcon/>}/>
+            </Grid>
+            <Grid item sm={6}>
+              <MyButton variant="contained" color="secondary" text="hi" slot={<DeleteIcon/>}/>
+            </Grid>
+          </Grid>
+          <MySpan text={'ba la ba ba ba'}/>
+        </div>
     );
   }
 }
