@@ -1,13 +1,13 @@
 import * as React from "react";
 import MyButton from "./MyComponent";
 import uuid from 'uuid/v4';
-import Grid from "@material-ui/core/Grid";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 
 export default class ToDo extends React.Component {
   constructor(props) {
@@ -41,16 +41,16 @@ export default class ToDo extends React.Component {
 
   render() {
     return <Grid container spacing={3}>
-      <Grid item sm={6}>
-        <input type="text" onChange={this.handleChange} value={this.state.task}/>&nbsp;
-        <MyButton onClick={this.addList} color="primary" text='Add'/>
-      </Grid>
-      <Grid item sm={6}>
+      <Grid item sm={12}>
+        <form noValidate autoComplete="off">
+          <TextField label="代辦事項" onChange={this.handleChange} value={this.state.task}/>
+          <MyButton onClick={this.addList} color="primary" text='Add'/>
+        </form>
         <List>
           {
             this.state.todoList.map(function (item) {
               return (
-                  <ListItem>
+                  <ListItem key={item.key}>
                     <ListItemIcon>
                       <Checkbox edge="start" tabIndex={-1}/>
                     </ListItemIcon>

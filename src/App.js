@@ -1,17 +1,27 @@
 import React from 'react';
-import Logo from './components/Logo';
+import Index from './components/Index';
 import './App.css';
 import 'typeface-roboto';
-import ToDo from "./components/ToDo";
+import ToDo from "./components/ToDo.jsx";
+import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import {blue} from "@material-ui/core/colors";
+import {Route} from "react-router-dom";
+import BottomNav from "./components/BottomNav";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+});
 
 function App() {
   return (
-      <div className="App">
-        <header className="App-header">
-          <Logo text="this is a react"/>
-          <ToDo/>
-        </header>
-      </div>
+      <MuiThemeProvider theme={createMuiTheme(theme)}>
+        <Route path="/" exact component={Index}/>
+        <Route path="/todo" component={ToDo}/>
+        <BottomNav/>
+      </MuiThemeProvider>
   );
 }
 

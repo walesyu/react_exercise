@@ -7,11 +7,6 @@ function MySpan(props) {
 
 export {MySpan}
 export default class MyButton extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {slot} = this.props;
     return <Button variant="contained" color={this.props.color} onClick={this.props.onClick}>
