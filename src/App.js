@@ -15,12 +15,18 @@ const theme = createMuiTheme({
   },
 });
 
+const windowHeight = {
+  height: '80vh'
+};
+
 function App() {
   return (
       <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <Route path="/" exact component={Index}/>
-        <Route path="/todo" component={ToDo}/>
-        <BottomNav/>
+        <div style={windowHeight}>
+          <Route path="/" exact component={Index}/>
+          <Route path="/todo" component={ToDo}/>
+        </div>
+        <BottomNav path={'/'}/>
       </MuiThemeProvider>
   );
 }
