@@ -13,7 +13,7 @@ export default class Index extends React.Component {
     this.state = {color: "red"};
   }
 
-  render() {
+  render = () => {
     return (
         <Grid container spacing={3}>
           <Grid item sm={12} className="center">
@@ -30,5 +30,5 @@ export default class Index extends React.Component {
           </Grid>
         </Grid>
     );
-  }
+  };
 }

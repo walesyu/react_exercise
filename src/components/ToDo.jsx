@@ -22,13 +22,13 @@ export default class ToDo extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {  // 3.
+  handleChange = (e) => {
     this.setState({
       task: e.target.value
     });
-  }
+  };
 
-  addList(e) {
+  addList = (e) => {
     e.preventDefault();
     if (this.state.task) {
       const item = {text: this.state.task, key: uuid()};
@@ -36,12 +36,11 @@ export default class ToDo extends React.Component {
         todoList: [...this.state.todoList, item],
         task: ''
       });
-
     }
     console.log(this.state);
-  }
+  };
 
-  render() {
+  render = () => {
     return <Grid container spacing={3}>
       <Grid item sm={12}>
         <Grid container justify="center">
@@ -70,5 +69,5 @@ export default class ToDo extends React.Component {
         </Grid>
       </Grid>
     </Grid>
-  }
+  };
 }

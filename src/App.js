@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from './components/Index';
+import Index from './components/Index.jsx';
 import './App.css';
 import 'typeface-roboto';
 import ToDo from "./components/ToDo.jsx";
@@ -19,16 +19,23 @@ const windowHeight = {
   height: '80vh'
 };
 
-function App() {
-  return (
-      <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <div style={windowHeight}>
-          <Route path="/" exact component={Index}/>
-          <Route path="/todo" component={ToDo}/>
-        </div>
-        <BottomNav path={'/'}/>
-      </MuiThemeProvider>
-  );
-}
 
-export default App;
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pathName: this.props.location.pathname
+    };
+  }
+
+  render() {
+    return <MuiThemeProvider theme={createMuiTheme(theme)}>
+      <div style={windowHeight}>
+        <Route path="/" exact component={(props) => <Index {...props}/>}/>
+        <Route path="/todo" component={(props) => <ToDo  {...props}/>}/>
+      </div>
+      <BottomNav initPath={this.props.location.pathname}/>
+    </MuiThemeProvider>
+  }
+}

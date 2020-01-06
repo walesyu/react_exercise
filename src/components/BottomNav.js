@@ -7,29 +7,29 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import {Link} from "react-router-dom";
 
 export default class BottomNav extends React.Component {
+
   constructor(props) {
     super(props);
-    if (props.path) {
-      console.log(props);
-      this.state = {value: props.path};
+    if (props.initPath) {
+      this.state = {path: props.initPath};
     } else {
-      this.state = {value: '/'};
+      this.state = {path: '/'};
     }
     this.setState = this.setState.bind(this);
   }
 
-  setValue(value) {
+  setPath(path) {
     this.setState({
-      value: value
+      path: path
     });
   }
 
   render() {
     return (
         <BottomNavigation
-            value={this.state.value}
+            value={this.state.path}
             onChange={(event, newValue) => {
-              this.setValue(newValue);
+              this.setPath(newValue);
             }}
             showLabels>
           <BottomNavigationAction label="Home" icon={<HomeIcon/>} value="/" component={Link} to="/"/>
