@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import '../App.css';
 
-export default class ToDo extends React.Component {
+class ToDo extends React.Component {
 
   constructor(props) {
     super(props);
@@ -42,32 +42,32 @@ export default class ToDo extends React.Component {
 
   render = () => {
     return <Grid container spacing={3}>
-      <Grid item sm={12}>
-        <Grid container justify="center">
-          <form noValidate autoComplete="off">
-            <TextField label="代辦事項" onChange={this.handleChange} value={this.state.task}/>
-            <MyButton onClick={this.addList} color="primary" text='Add'/>
-          </form>
-        </Grid>
+      <Grid item md={5}/>
+      <Grid item md={7}>
+        <form noValidate autoComplete="off">
+          <TextField label="代辦事項" onChange={this.handleChange} value={this.state.task}/>
+          <MyButton onClick={this.addList} color="primary" text='Add'/>
+        </form>
       </Grid>
-      <Grid item sm={12}>
-        <Grid container justify="center">
-          <List className='taskList'>
-            {
-              this.state.todoList.map(function (item) {
-                return (
-                    <ListItem key={item.key}>
-                      <ListItemIcon>
-                        <Checkbox edge="start" tabIndex={-1}/>
-                      </ListItemIcon>
-                      <ListItemText id={item.key} primary={item.text}/>
-                    </ListItem>
-                )
-              })
-            }
-          </List>
-        </Grid>
+      <Grid item md={5}/>
+      <Grid item md={7}>
+        <List className='taskList'>
+          {
+            this.state.todoList.map(function (item) {
+              return (
+                  <ListItem key={item.key}>
+                    <ListItemIcon>
+                      <Checkbox edge="start" tabIndex={-1}/>
+                    </ListItemIcon>
+                    <ListItemText id={item.key} primary={item.text}/>
+                  </ListItem>
+              )
+            })
+          }
+        </List>
       </Grid>
     </Grid>
   };
 }
+
+export default ToDo

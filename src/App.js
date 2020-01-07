@@ -8,6 +8,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import {blue} from "@material-ui/core/colors";
 import {Route} from "react-router-dom";
 import BottomNav from "./components/BottomNav";
+import MyForm from "./components/MyForm";
 
 const theme = createMuiTheme({
   palette: {
@@ -19,11 +20,9 @@ const windowHeight = {
   height: '80vh'
 };
 
-
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       pathName: this.props.location.pathname
     };
@@ -33,9 +32,12 @@ export default class App extends React.Component {
     return <MuiThemeProvider theme={createMuiTheme(theme)}>
       <div style={windowHeight}>
         <Route path="/" exact component={(props) => <Index {...props}/>}/>
-        <Route path="/todo" component={(props) => <ToDo  {...props}/>}/>
+        <Route path="/todo" component={(props) => <ToDo {...props}/>}/>
+        <Route path={"/myForm"} component={(props) => <MyForm {...props}/>}/>
       </div>
       <BottomNav initPath={this.props.location.pathname}/>
     </MuiThemeProvider>
   }
 }
+
+export default App
