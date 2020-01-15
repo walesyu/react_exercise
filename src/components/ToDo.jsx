@@ -12,6 +12,8 @@ import '../App.css';
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
+import {connect} from 'react-redux'
+import * as actionCreators from '../actions/toDo'
 
 class ToDo extends React.Component {
 
@@ -27,13 +29,8 @@ class ToDo extends React.Component {
     this.removeItem = this.removeItem.bind(this);
   }
 
-  removeItem = (event) => {
-    event.stopPropagation();
-    const index = event.target.value;
-    let todoList = this.state.todoList;
-    console.log(event.target);
-    todoList.splice(index, 1);
-    this.setState({todoList: todoList})
+  removeItem = (event, id) => {
+    this.props.removeTodo(id);
   };
 
   handleChange = (e) => {
@@ -45,12 +42,13 @@ class ToDo extends React.Component {
   addList = (e) => {
     e.preventDefault();
     if (this.state.task) {
-      const item = {text: this.state.task, key: uuid()};
+      const item = {text: this.state.task, id: uuid()};
       this.setState({
         todoList: [...this.state.todoList, item],
         task: '',
         isShowError: false
       });
+      this.props.addTodo(item);
     } else {
       this.setState({
         isShowError: true
@@ -59,6 +57,8 @@ class ToDo extends React.Component {
   };
 
   render = () => {
+    const {todoList, removeTodo} = this.props;
+
     return <Grid container spacing={3}>
       <Grid item md={12}/>
       <Grid item md={5}/>
@@ -78,14 +78,11 @@ class ToDo extends React.Component {
       <Grid item md={7}>
         <List className='taskList'>
           {
-            this.state.todoList.map((item, index) => {
+            todoList.map((item, index) => {
               return (
-                  <ListItem key={item.key}>
-                    <ListItemIcon>
-                      <Checkbox edge="start" value={index} tabIndex={-1} onChange={this.removeItem}/>
-                    </ListItemIcon>
-                    <ListItemText id={item.key} primary={item.text}/>
-                    <Button variant="contained" value={index} color={"secondary"} onClick={this.removeItem}>Delete</Button>
+                  <ListItem key={item.id}>
+                    <ListItemText id={item.id} primary={item.text}/>
+                    <Button variant="contained" color={"secondary"} onClick={() => removeTodo(item.id)}>Delete</Button>
                   </ListItem>
               )
             })
@@ -96,4 +93,7 @@ class ToDo extends React.Component {
   };
 }
 
-export default ToDo
+const mapStateToProps = store => {
+  return {todoList: store.toDos};
+};
+export default connect(mapStateToProps, actionCreators)(ToDo)
