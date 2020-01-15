@@ -2,10 +2,10 @@ import React from "react";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeIcon from "@material-ui/icons/Home";
 import ListIcon from "@material-ui/icons/List";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
+import ContactMailIcon from '@material-ui/icons/ContactMail';
 
 class BottomNav extends React.Component {
 
@@ -34,7 +34,7 @@ class BottomNav extends React.Component {
           <BottomNavigationAction label="Home" icon={<HomeIcon/>} value="/" component={Link} to="/"/>
           <BottomNavigationAction label="ToDoList" icon={<ListIcon/>} value="/todo" component={Link} to="/todo"/>
           <BottomNavigationAction label="MyForm" icon={
-            <LocationOnIcon/>} value="/myForm" component={Link} to="/myForm"/>
+            <ContactMailIcon/>} value="/myForm" component={Link} to="/myForm"/>
         </BottomNavigation>
     );
   }
