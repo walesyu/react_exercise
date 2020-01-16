@@ -2,13 +2,14 @@ import React from 'react';
 import Index from './components/Index.jsx';
 import './App.css';
 import 'typeface-roboto';
-import ToDo from "./components/ToDo.jsx";
+import TodoList from "./components/TodoList";
 import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import {blue} from "@material-ui/core/colors";
 import {Route} from "react-router-dom";
 import BottomNav from "./components/BottomNav";
 import MyForm from "./components/MyForm";
+import Container from "@material-ui/core/Container";
 
 const theme = createMuiTheme({
   palette: {
@@ -30,11 +31,11 @@ class App extends React.Component {
 
   render() {
     return <MuiThemeProvider theme={createMuiTheme(theme)}>
-      <div style={windowHeight}>
+      <Container style={windowHeight}>
         <Route path="/" exact component={(props) => <Index {...props}/>}/>
-        <Route path="/todo" component={(props) => <ToDo {...props}/>}/>
+        <Route path="/todo" component={(props) => <TodoList {...props}/>}/>
         <Route path={"/myForm"} component={(props) => <MyForm {...props}/>}/>
-      </div>
+      </Container>
       <BottomNav initPath={this.props.location.pathname}/>
     </MuiThemeProvider>
   }

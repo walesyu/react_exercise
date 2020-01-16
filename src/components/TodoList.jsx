@@ -2,9 +2,7 @@ import * as React from "react";
 import MyButton from "./MyComponent";
 import uuid from 'uuid/v4';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -13,9 +11,9 @@ import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
 import {connect} from 'react-redux'
-import * as actionCreators from '../actions/toDo'
+import * as actionCreators from '../actions/todoList'
 
-class ToDo extends React.Component {
+class TodoList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -59,7 +57,7 @@ class ToDo extends React.Component {
   render = () => {
     const {todoList, removeTodo} = this.props;
 
-    return <Grid container spacing={3}>
+    return <Grid container>
       <Grid item md={12}/>
       <Grid item md={5}/>
       <Grid item md={7}>
@@ -93,7 +91,7 @@ class ToDo extends React.Component {
   };
 }
 
-const mapStateToProps = store => {
-  return {todoList: store.toDos};
+const mapStateToProps = (store) => {
+  return {todoList: store.todo};
 };
-export default connect(mapStateToProps, actionCreators)(ToDo)
+export default connect(mapStateToProps, actionCreators)(TodoList)

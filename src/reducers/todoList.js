@@ -1,5 +1,5 @@
 //定義可以觸發的action type與動作
-const toDos = (state = [], action) => {
+const todoList = (state = [], action) => {
   switch (action.type) {
     case 'ADD_ITEM':
       let data = action.payload;
@@ -17,4 +17,4 @@ const toDos = (state = [], action) => {
   }
 };
 
-export default toDos
+export default todoList

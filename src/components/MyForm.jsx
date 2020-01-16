@@ -72,14 +72,16 @@ class MyForm extends React.Component {
             <FormControl>
               <TextField variant="outlined" name="account" label={"Name"} onChange={this.handleInput} value={this.state.account}/>
             </FormControl>
-            {this.state.showAccountError ? <FormHelperText error={true} margin={'dense'} variant={'outlined'}>Your account</FormHelperText> : null}
+            {this.state.showAccountError ?
+                <FormHelperText error={true} margin={'dense'} variant={'outlined'}>Your account</FormHelperText> : null}
           </Grid>
           <Grid item md={12}>&nbsp;</Grid>
           <Grid item md={12}>
             <FormControl>
               <TextField type="password" name="password" label="Password" variant="outlined" onChange={this.handleInput} value={this.state.password}/>
             </FormControl>
-            {this.state.showPasswordError ? <FormHelperText error={'true'} margin={'dense'} variant={'outlined'}>Your password</FormHelperText> : null}
+            {this.state.showPasswordError ? <FormHelperText error={'true'} margin={'dense'} variant={'outlined'}>Your
+              password</FormHelperText> : null}
           </Grid>
           <Grid style={{'marginLeft': '145px', 'marginTop': '20px'}}>
             <Button color="primary" type={'submit'} variant="contained">登入</Button>&nbsp;
@@ -89,12 +91,10 @@ class MyForm extends React.Component {
       </Grid>
     }
 
-    return <Grid container spacing={3}>
+    return <Grid container>
       <Grid item md={12}/>
       <Grid item md={5}/>
-
       {loginForm}
-
     </Grid>
   };
 }
