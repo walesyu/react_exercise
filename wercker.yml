@@ -12,7 +12,7 @@ box: node
   # https://devcenter.wercker.com/administration/services/
   # services:
   # - postgres
-  # https://devcenter.wercker.com/administration/services/examples/postgresql/
+# https://devcenter.wercker.com/administration/services/examples/postgresql/
 
 # - mongo
 # https://devcenter.wercker.com/administration/services/examples/mongodb/
@@ -34,4 +34,7 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-    - npm-build
+    - script:
+        name: npm build
+        code: |
+          npm build
