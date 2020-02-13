@@ -25,7 +25,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pathName: this.props.location.pathname
+      pathName: (this.props.location)?this.props.location.pathname:'/'
     };
   }
 
@@ -36,7 +36,7 @@ class App extends React.Component {
         <Route path="/todo" component={(props) => <TodoList {...props}/>}/>
         <Route path={"/myForm"} component={(props) => <MyForm {...props}/>}/>
       </Container>
-      <BottomNav initPath={this.props.location.pathname}/>
+      <BottomNav initPath={this.state.pathName}/>
     </Container>
   }
 }
