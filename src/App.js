@@ -18,7 +18,7 @@ const theme = createMuiTheme({
 });
 
 const windowHeight = {
-  height: '80vh'
+  height: '90vh'
 };
 
 class App extends React.Component {
@@ -30,14 +30,14 @@ class App extends React.Component {
   }
 
   render() {
-    return <MuiThemeProvider theme={createMuiTheme(theme)}>
+    return <Container component="main" maxWidth="lg">
       <Container style={windowHeight}>
         <Route path="/" exact component={(props) => <Index {...props}/>}/>
         <Route path="/todo" component={(props) => <TodoList {...props}/>}/>
         <Route path={"/myForm"} component={(props) => <MyForm {...props}/>}/>
       </Container>
       <BottomNav initPath={this.props.location.pathname}/>
-    </MuiThemeProvider>
+    </Container>
   }
 }
 

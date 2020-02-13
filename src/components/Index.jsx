@@ -17,8 +17,8 @@ class Index extends React.Component {
   render = () => {
     return (
         <Grid container spacing={3}>
-          <Grid item md={12} xs={12} className="center">
-            <img src={logo} className="App-logo" alt="logo"/>
+          <Grid item md={12} xs={12} style={{'textAlign':'center'}}>
+           <img src={logo} className="App-logo" alt="logo"/>
           </Grid>
           <Grid item md={6} xs={12} className="center">
             <MyButton variant="contained" color="primary" text="hello" slot={<HomeIcon/>}/>

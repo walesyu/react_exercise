@@ -7,10 +7,10 @@ import List from "@material-ui/core/List";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import '../App.css';
-import FormControl from "@material-ui/core/FormControl";
+import { makeStyles } from '@material-ui/core/styles';
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as actionCreators from '../actions/todoList'
 
 class TodoList extends React.Component {
@@ -20,8 +20,23 @@ class TodoList extends React.Component {
     this.state = {
       task: '',
       todoList: [],
-      isShowError: false
+      isShowError: false,
+      styles:''
     };
+
+    this.setState('styles', () => {
+      makeStyles(theme => ({
+        paper: {
+          padding: theme.spacing(1),
+          textAlign: 'center',
+          color: theme.palette.text.secondary,
+          whiteSpace: 'nowrap',
+          marginBottom: theme.spacing(1)
+        }
+    })
+      )
+  }
+  );
     this.addList = this.addList.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -40,7 +55,7 @@ class TodoList extends React.Component {
   addList = (e) => {
     e.preventDefault();
     if (this.state.task) {
-      const item = {text: this.state.task, id: uuid()};
+      const item = { text: this.state.task, id: uuid() };
       this.setState({
         todoList: [...this.state.todoList, item],
         task: '',
@@ -55,33 +70,28 @@ class TodoList extends React.Component {
   };
 
   render = () => {
-    const {todoList, removeTodo} = this.props;
+    const { todoList, removeTodo } = this.props;
 
-    return <Grid container>
-      <Grid item md={12}/>
-      <Grid item md={5}/>
-      <Grid item md={7}>
-        <form noValidate autoComplete="off">
-          <FormControl>
-            <TextField label="代辦事項" onChange={this.handleChange} value={this.state.task}/>
-            {
-              this.state.isShowError ?
-                  <FormHelperText error={true} margin={'dense'} variant={'outlined'}>請輸入待辦事項</FormHelperText> : null
-            }
-          </FormControl>
-          <MyButton onClick={this.addList} color="primary" text='Add'/>
-        </form>
+    return <Grid container spacing={3}>
+      <Grid item md={8} xs={12} className="center">
+        <TextField label="代辦事項" onChange={this.handleChange} value={this.state.task} />
+        {
+          this.state.isShowError ?
+            <FormHelperText error={true} margin={'dense'} variant={'outlined'}>請輸入待辦事項</FormHelperText> : null
+        }
       </Grid>
-      <Grid item md={5}/>
-      <Grid item md={7}>
+      <Grid item md={4} xs={12} className="center">
+        <MyButton onClick={this.addList} color="primary" text='Add' />
+      </Grid>
+      <Grid item md={12} xs={12} className="center">
         <List className='taskList'>
           {
             todoList.map((item, index) => {
               return (
-                  <ListItem key={item.id}>
-                    <ListItemText id={item.id} primary={item.text}/>
-                    <Button variant="contained" color={"secondary"} onClick={() => removeTodo(item.id)}>Delete</Button>
-                  </ListItem>
+                <ListItem key={item.id}>
+                  <ListItemText id={item.id} primary={item.text} />
+                  <Button variant="contained" color={"secondary"} onClick={() => removeTodo(item.id)}>Delete</Button>
+                </ListItem>
               )
             })
           }
@@ -92,6 +102,6 @@ class TodoList extends React.Component {
 }
 
 const mapStateToProps = (store) => {
-  return {todoList: store.todo};
+  return { todoList: store.todo };
 };
 export default connect(mapStateToProps, actionCreators)(TodoList)
