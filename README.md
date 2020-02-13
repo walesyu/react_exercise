@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[![wercker status](https://app.wercker.com/status/9cca7bacd5d5ad17e4bc1c1675cc0790/s/master "wercker status")](https://app.wercker.com/project/byKey/9cca7bacd5d5ad17e4bc1c1675cc0790)
+
 ## Available Scripts
 
 In the project directory, you can run:
