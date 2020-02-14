@@ -9,7 +9,7 @@ box: node
   # https://devcenter.wercker.com/development/pipelines/
 
   # You can also use services such as databases. Read more on our dev center:
-  # https://devcenter.wercker.com/administration/services/
+# https://devcenter.wercker.com/administration/services/
 # services:
 # - postgres
 # https://devcenter.wercker.com/administration/services/examples/postgresql/
@@ -47,3 +47,4 @@ deploy:
         domain: walesyu.github.io
         path: public
         repo: walesyu/react_exercise
+        comment: deploy
