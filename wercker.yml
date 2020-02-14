@@ -10,8 +10,8 @@ box: node
 
   # You can also use services such as databases. Read more on our dev center:
   # https://devcenter.wercker.com/administration/services/
-  # services:
-  # - postgres
+# services:
+# - postgres
 # https://devcenter.wercker.com/administration/services/examples/postgresql/
 
 # - mongo
@@ -39,6 +39,15 @@ build:
         name: npm build
         code: |
           npm build
-    - bashaus/zip:
-        cwd: $WERCKER_ROOT/build
-        quiet: false
+    - gh-pages:
+        token: $GIT_TOKEN
+        domain: walesyu.github.io
+        basedir: public
+deploy:
+  steps:
+    - install-packages:
+        packages: git curl
+    - melvincornelissen/gh-pages:
+        token: $GIT_TOKEN
+        domain: walesyu.github.io
+        path: public
