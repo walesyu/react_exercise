@@ -38,3 +38,6 @@ build:
         name: npm build
         code: |
           npm build
+    - bashaus/zip:
+        cwd: $WERCKER_ROOT/build
+        quiet: false
