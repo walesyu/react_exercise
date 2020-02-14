@@ -37,7 +37,7 @@ build:
     - script:
         name: npm build
         code: |
-          npm build
+          npm run build
 deploy:
   steps:
     - install-packages:
