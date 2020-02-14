@@ -3,8 +3,6 @@ import Index from './components/Index.jsx';
 import './App.css';
 import 'typeface-roboto';
 import TodoList from "./components/TodoList";
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import {blue} from "@material-ui/core/colors";
 import {Route} from "react-router-dom";
 import BottomNav from "./components/BottomNav";
 import MyForm from "./components/MyForm";
