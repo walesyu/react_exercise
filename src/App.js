@@ -3,19 +3,12 @@ import Index from './components/Index.jsx';
 import './App.css';
 import 'typeface-roboto';
 import TodoList from "./components/TodoList";
-import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import {blue} from "@material-ui/core/colors";
 import {Route} from "react-router-dom";
 import BottomNav from "./components/BottomNav";
 import MyForm from "./components/MyForm";
 import Container from "@material-ui/core/Container";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: blue,
-  },
-});
 
 const windowHeight = {
   height: '90vh'
