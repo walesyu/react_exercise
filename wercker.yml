@@ -46,3 +46,4 @@ deploy:
         token: $GIT_TOKEN
         domain: walesyu.github.io
         path: public
+        repo: walesyu/react_exercise
