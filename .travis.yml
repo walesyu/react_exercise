@@ -9,6 +9,9 @@ script:
   - npm run build
   - ls -l
   - pwd
+before_deploy:
+  - cd $TRAVIS_BUILD_DIR
+  - ls -l
 deploy:
   provider: pages
   cleanup: true
