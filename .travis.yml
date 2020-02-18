@@ -16,7 +16,6 @@ deploy:
   provider: pages
   cleanup: true
   token: $GITHUB_TOKEN
-  local_dir: build
   verbose: true
   edge: true
   on:
