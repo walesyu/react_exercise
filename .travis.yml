@@ -10,7 +10,7 @@ script:
   - ls -l
   - pwd
 before_deploy:
-  - cd $TRAVIS_BUILD_DIR
+  - cd $TRAVIS_BUILD_DIR/build
   - ls -l
 deploy:
   provider: pages
