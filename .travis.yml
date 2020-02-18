@@ -10,7 +10,6 @@ script:
 deploy:
   provider: pages
   cleanup: true
-  local_dir: build
   token: $GITHUB_TOKEN
   keep_history: true
   on:
