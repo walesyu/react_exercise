@@ -28,7 +28,7 @@ class Index extends React.Component {
             <MyButton variant="contained" color="secondary" text="hi" slot={<DeleteIcon/>}/>
           </Grid>
           <Grid item md={12} xs={12} className="center">
-            {this.state.time}<MySpan text={'ba la ba ba ba'}/>
+            {this.state.time}<MySpan text={'ba la ba ba ba'}/> Version 0.2
           </Grid>
         </Grid>
     );

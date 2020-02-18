@@ -15,16 +15,18 @@ const windowHeight = {
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      pathName: (this.props.location)?this.props.location.pathname:'/'
+      pathName: (this.props.location && this.props.location.pathname !== '/') ? this.props.location.pathname : 'index'
     };
+    console.log(this.state.pathName)
   }
 
   render() {
     return <Container component="main" maxWidth="lg">
       <Container style={windowHeight}>
-        <Route path="/" exact component={(props) => <Index {...props}/>}/>
-        <Route path="/todo" component={(props) => <TodoList {...props}/>}/>
+        <Route path={"/index"} exact component={(props) => <Index {...props}/>}/>
+        <Route path={"/todo"} component={(props) => <TodoList {...props}/>}/>
         <Route path={"/myForm"} component={(props) => <MyForm {...props}/>}/>
       </Container>
       <BottomNav initPath={this.state.pathName}/>

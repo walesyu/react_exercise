@@ -11,12 +11,12 @@ class BottomNav extends React.Component {
 
   constructor(props) {
     super(props);
+    this.setPath = this.setPath.bind(this);
     if (props.initPath) {
       this.state = {path: props.initPath};
     } else {
       this.state = {path: '/'};
     }
-    this.setPath = this.setPath.bind(this);
   }
 
   setPath = (event, newValue) => {
@@ -27,14 +27,11 @@ class BottomNav extends React.Component {
 
   render() {
     return (
-        <BottomNavigation
-            value={this.state.path}
-            onChange={this.setPath}
-            showLabels>
-          <BottomNavigationAction label="Home" icon={<HomeIcon/>} value="/" component={Link} to="/"/>
-          <BottomNavigationAction label="ToDoList" icon={<ListIcon/>} value="/todo" component={Link} to="/todo"/>
+        <BottomNavigation value={this.state.path} onChange={this.setPath} showLabels>
+          <BottomNavigationAction label="Home" icon={<HomeIcon/>} value="index" component={Link} to="index"/>
+          <BottomNavigationAction label="ToDoList" icon={<ListIcon/>} value="todo" component={Link} to="todo"/>
           <BottomNavigationAction label="MyForm" icon={
-            <ContactMailIcon/>} value="/myForm" component={Link} to="/myForm"/>
+            <ContactMailIcon/>} value="myForm" component={Link} to="myForm"/>
         </BottomNavigation>
     );
   }
