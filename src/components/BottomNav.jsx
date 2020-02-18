@@ -34,7 +34,7 @@ class BottomNav extends React.Component {
           <BottomNavigationAction label="Home" icon={<HomeIcon/>} value="/" component={Link} to="/"/>
           <BottomNavigationAction label="ToDoList" icon={<ListIcon/>} value="/todo" component={Link} to="/todo"/>
           <BottomNavigationAction label="MyForm" icon={
-            <ContactMailIcon/>} value="/myForm" component={Link} to="/myForm"/>
+            <ContactMailIcon/>} value="/myForm" component={Link} to="myForm"/>
         </BottomNavigation>
     );
   }
