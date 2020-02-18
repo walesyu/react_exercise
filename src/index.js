@@ -16,7 +16,7 @@ let store = createStore(todoApp);
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter style={windowHeight}>
+      <BrowserRouter basename="/react_exercise" style={windowHeight}>
         <Switch>
           <App/>
         </Switch>

@@ -85,7 +85,7 @@ class MyForm extends React.Component {
           </Grid>
           <Grid style={{'marginLeft': '145px', 'marginTop': '20px'}}>
             <Button color="primary" type={'submit'} variant="contained">登入</Button>&nbsp;
-            <Button color="secondary" onClick={this.Reset} variant="contained">Reset</Button>
+            <Button color="secondary" onClick={this.Reset} variant="contained">重設</Button>
           </Grid>
         </form>
       </Grid>
