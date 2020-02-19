@@ -9,10 +9,10 @@ script:
   - npm run build
 before_deploy:
   - echo "deploy starting..."
-  - cd $TRAVIS_BUILD_DIR/build
 deploy:
   provider: pages
   cleanup: false
+  local_dir: build
   token: $GITHUB_TOKEN
   verbose: true
   edge: true
