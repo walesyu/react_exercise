@@ -10,7 +10,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import {connect} from "react-redux";
 import * as actionCreators from "../actions/login";
-import MyButton from "./MyComponent";
 
 class MyForm extends React.Component {
   constructor(props) {
