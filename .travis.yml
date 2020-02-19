@@ -7,10 +7,9 @@ cache:
 script:
   - npm test
   - npm run build
-  - ls -l
-  - pwd
 before_deploy:
   - echo "deploy starting..."
+  - cd $TRAVIS_BUILD_DIR/build
 deploy:
   provider: pages
   cleanup: false
