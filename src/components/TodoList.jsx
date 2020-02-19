@@ -19,7 +19,6 @@ class TodoList extends React.Component {
     super(props);
     this.state = {
       task: '',
-      todoList: [],
       isShowError: false
     };
     this.addList = this.addList.bind(this);
@@ -42,7 +41,6 @@ class TodoList extends React.Component {
     if (this.state.task) {
       const item = {text: this.state.task, id: uuid()};
       this.setState({
-        todoList: [...this.state.todoList, item],
         task: '',
         isShowError: false
       });

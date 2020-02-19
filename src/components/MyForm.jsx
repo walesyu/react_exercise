@@ -8,16 +8,19 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import {connect} from "react-redux";
+import * as actionCreators from "../actions/login";
+import MyButton from "./MyComponent";
 
 class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      account: '',
+      account: (props.account) ? props.account : "",
       password: '',
       showAccountError: false,
       showPasswordError: false,
-      isLogin: false
+      isLogin: (props.isLogin) ? props.isLogin : false,
     };
     this.checkForm = this.checkForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -46,6 +49,7 @@ class MyForm extends React.Component {
       this.setState({showPasswordError: false});
     }
     this.setState({isLogin: true});
+    this.props.login(this.state.account);
   };
 
   Reset = (e) => {
@@ -99,4 +103,10 @@ class MyForm extends React.Component {
   };
 }
 
-export default MyForm;
+const mapStateToProps = (store) => {
+  return {
+    account: (store.loginInfo.user) ? store.loginInfo.user.name : '',
+    isLogin: !!(store.loginInfo.user)
+  };
+};
+export default connect(mapStateToProps, actionCreators)(MyForm)

@@ -10,8 +10,7 @@ script:
   - ls -l
   - pwd
 before_deploy:
-  - cd $TRAVIS_BUILD_DIR/build
-  - ls -l
+  - echo "deploy starting..."
 deploy:
   provider: pages
   cleanup: false

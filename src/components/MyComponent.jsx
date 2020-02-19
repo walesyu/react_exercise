@@ -5,7 +5,7 @@ export function MySpan(props) {
   return <span>{props.text}</span>
 }
 
-export function MyButton(props) {
+function MyButton(props) {
   const {slot} = props;
   return <Button variant="contained" color={props.color} onClick={props.onClick}>
     {slot} {props.text}
