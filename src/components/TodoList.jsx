@@ -1,95 +1,78 @@
 import * as React from "react";
-import MyButton from "./MyComponent";
-import uuid from 'uuid/v4';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import List from "@material-ui/core/List";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import '../App.css';
-import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Button from "@material-ui/core/Button";
+import './todoList.css';
 import {connect} from 'react-redux'
-import * as actionCreators from '../actions/todoList'
+import {useState} from "react";
+import {
+  Button,
+  FormControl, FormHelperText, Grid, List, ListItem, ListItemText, TextField
+} from "@mui/material";
+import {useSelector, useDispatch} from 'react-redux'
+import {removeTodo, addTodo} from '../actions/todoList'
+import MyButton from './MyComponent'
 
-class TodoList extends React.Component {
+function TodoList({todoList}) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      task: '',
-      isShowError: false
-    };
-    this.addList = this.addList.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-  }
+  const [task, setTask] = useState('')
+  const [isShowError, setIsShowError] = useState('')
+  const dispatch = useDispatch()
 
-  removeItem = (event, id) => {
-    this.props.removeTodo(id);
+  const removeItem = (id) => {
+    dispatch(removeTodo(id));
   };
 
-  handleChange = (e) => {
-    this.setState({
-      task: e.target.value
-    });
+  const handleChange = (e) => {
+    setTask(e.target.value);
   };
 
-  addList = (e) => {
+  const addList = (e) => {
     e.preventDefault();
-    if (this.state.task) {
-      const item = {text: this.state.task, id: uuid()};
-      this.setState({
-        task: '',
-        isShowError: false
-      });
-      this.props.addTodo(item);
+    if (task) {
+      const item = {text: task, id: new Date().getTime()};
+      setTask('')
+      setIsShowError(false)
+      dispatch(addTodo(item));
     } else {
-      this.setState({
-        isShowError: true
-      });
+      setIsShowError(true);
     }
   };
 
-  render = () => {
-    const {todoList, removeTodo} = this.props;
-
-    return <Grid container>
-      <Grid item md={12}/>
-      <Grid item md={5}/>
-      <Grid item md={7}>
-        <form noValidate autoComplete="off">
-          <FormControl>
-            <TextField label="代辦事項" onChange={this.handleChange} value={this.state.task}/>
-            {
-              this.state.isShowError ?
-                  <FormHelperText error={true} margin={'dense'} variant={'outlined'}>請輸入待辦事項</FormHelperText> : null
-            }
-          </FormControl>
-          <MyButton onClick={this.addList} color="primary" text='Add'/>
-        </form>
-      </Grid>
-      <Grid item md={5}/>
-      <Grid item md={7}>
-        <List className='taskList'>
-          {
-            todoList.map((item, index) => {
+  return <Grid container>
+    <Grid item md={12}/>
+    <Grid item md={5}/>
+    <Grid item md={7}>
+      <form noValidate autoComplete="off">
+        <FormControl>
+          <TextField label="代辦事項" onChange={handleChange}
+                     value={task}/>
+          {isShowError ?
+              <FormHelperText error={true}
+                              margin={'dense'}
+                              variant={'outlined'}>請輸入待辦事項</FormHelperText>
+              : null
+          }
+        </FormControl>
+        <MyButton handleClick={addList} color="primary" text='Add'/>
+      </form>
+    </Grid>
+    <Grid item md={5}/>
+    <Grid item md={7}>
+      <List className='taskList'>
+        {todoList.map((item, index) => {
               return (
                   <ListItem key={item.id}>
-                    <ListItemText id={item.id} primary={item.text}/>
-                    <Button variant="contained" color={"secondary"} onClick={() => removeTodo(item.id)}>Delete</Button>
-                  </ListItem>
+                <ListItemText key={'list_' + item.id} id={item.id} primary={item.text}/>
+                <Button key={'button_' + item.id} variant="contained" color={"secondary"}
+                        onClick={() => removeItem(item.id)}>Delete</Button>
+              </ListItem>
               )
-            })
-          }
-        </List>
-      </Grid>
+            }
+        )}
+      </List>
     </Grid>
-  };
+  </Grid>
 }
 
 const mapStateToProps = (store) => {
   return {todoList: store.todo};
 };
-export default connect(mapStateToProps, actionCreators)(TodoList)
+export default connect(mapStateToProps)(TodoList)

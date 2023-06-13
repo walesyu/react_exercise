@@ -1,14 +1,9 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
-
-export function MySpan(props) {
-  return <span>{props.text}</span>
-}
+import {Button} from "@mui/material";
 
 function MyButton(props) {
-  const {slot} = props;
-  return <Button variant="contained" color={props.color} onClick={props.onClick}>
-    {slot} {props.text}
+  return <Button variant="contained" color={props.color} onClick={props.handleClick}>
+    {props.text}
   </Button>
 }
 

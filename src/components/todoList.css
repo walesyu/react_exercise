@@ -1,0 +1,7 @@
+.taskList {
+  position: relative;
+  overflow: auto;
+  max-Height: 50vh;
+  width: 100%;
+  max-Width: 250px;
+}
