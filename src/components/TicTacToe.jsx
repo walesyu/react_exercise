@@ -1,5 +1,5 @@
 import {useState} from "react";
-import './ticTacToe.css';
+import './css/ticTacToe.css';
 import {Button, Grid} from "@mui/material";
 import * as React from "react";
 

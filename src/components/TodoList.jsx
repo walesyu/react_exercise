@@ -1,5 +1,5 @@
 import * as React from "react";
-import './todoList.css';
+import './css/todoList.css';
 import {connect} from 'react-redux'
 import {useState} from "react";
 import {
@@ -41,17 +41,21 @@ function TodoList({todoList}) {
     <Grid item md={5}/>
     <Grid item md={7}>
       <form noValidate autoComplete="off">
-        <FormControl>
-          <TextField label="代辦事項" onChange={handleChange}
-                     value={task}/>
-          {isShowError ?
-              <FormHelperText error={true}
-                              margin={'dense'}
-                              variant={'outlined'}>請輸入待辦事項</FormHelperText>
-              : null
-          }
-        </FormControl>
-        <MyButton handleClick={addList} color="primary" text='Add'/>
+        <Grid item md={7}>
+          <FormControl>
+            <TextField label="代辦事項" onChange={handleChange}
+                       value={task}/>
+            {isShowError ?
+                <FormHelperText error={true}
+                                margin={'dense'}
+                                variant={'outlined'}>請輸入待辦事項</FormHelperText>
+                : null
+            }
+          </FormControl>
+        </Grid>
+        <Grid style={{'marginLeft': '145px', 'marginTop': '20px'}}>
+          <MyButton handleClick={addList} color="primary" text='Add'/>
+        </Grid>
       </form>
     </Grid>
     <Grid item md={5}/>
@@ -60,10 +64,12 @@ function TodoList({todoList}) {
         {todoList.map((item, index) => {
               return (
                   <ListItem key={item.id}>
-                <ListItemText key={'list_' + item.id} id={item.id} primary={item.text}/>
-                <Button key={'button_' + item.id} variant="contained" color={"secondary"}
-                        onClick={() => removeItem(item.id)}>Delete</Button>
-              </ListItem>
+                    <ListItemText key={'list_' + item.id} id={item.id}
+                                  primary={item.text}/>
+                    <Button key={'button_' + item.id} variant="contained"
+                            color={"secondary"}
+                            onClick={() => removeItem(item.id)}>Delete</Button>
+                  </ListItem>
               )
             }
         )}
