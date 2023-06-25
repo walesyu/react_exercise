@@ -1,23 +1,21 @@
 import * as React from "react";
 import './css/todoList.css';
-import {connect} from 'react-redux'
 import {useState} from "react";
 import {
   Button,
   FormControl, FormHelperText, Grid, List, ListItem, ListItemText, TextField
 } from "@mui/material";
 import {useSelector, useDispatch} from 'react-redux'
-import {removeTodo, addTodo} from '../actions/todoList'
 import MyButton from './MyComponent'
 
-function TodoList({todoList}) {
+function TodoList() {
 
   const [task, setTask] = useState('')
   const [isShowError, setIsShowError] = useState('')
   const dispatch = useDispatch()
-
+  const todoList = useSelector(state => state.todo)
   const removeItem = (id) => {
-    dispatch(removeTodo(id));
+    dispatch({type: 'DEL_ITEM', id});
   };
 
   const handleChange = (e) => {
@@ -30,7 +28,10 @@ function TodoList({todoList}) {
       const item = {text: task, id: new Date().getTime()};
       setTask('')
       setIsShowError(false)
-      dispatch(addTodo(item));
+      dispatch({
+        type: 'ADD_ITEM',
+        payload: item
+      });
     } else {
       setIsShowError(true);
     }
@@ -78,7 +79,4 @@ function TodoList({todoList}) {
   </Grid>
 }
 
-const mapStateToProps = (store) => {
-  return {todoList: store.todo};
-};
-export default connect(mapStateToProps)(TodoList)
+export default TodoList

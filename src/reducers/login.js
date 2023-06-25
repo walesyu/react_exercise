@@ -2,10 +2,10 @@
 const login = (state = [], action) => {
   switch (action.type) {
     case 'LOGIN':
-      let data = action.payload;
+      let account = action.account;
       return {
         user: {
-          name: data,
+          name: account,
           role: 'Admin'
         }
       };

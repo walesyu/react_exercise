@@ -1,10 +1,11 @@
 import './App.css';
-import TicTacToe from "./Components/TicTacToe";
 import {Container} from '@mui/material'
 import BottomNav from "./Components/BottomNav";
 import {Route, Routes} from "react-router-dom";
 import TodoList from "./Components/TodoList";
 import MyForm from "./Components/MyForm";
+import React from "react";
+import TicTacToe from "./Components/TicTacToe";
 
 function App() {
   const pathName = (window.location.pathname) ? window.location.pathname : '/';

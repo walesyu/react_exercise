@@ -1,6 +1,6 @@
 import * as React from "react";
 import '../App.css';
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {useState} from "react";
 import {useDispatch} from 'react-redux'
 import {
@@ -11,11 +11,11 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import {login, logout} from '../actions/login'
 
-function MyForm({isUserLogin, account}) {
-  console.log("account：", account)
-  const [userAccount, setUserAccount] = useState(account ? account : "");
+function MyForm() {
+  const account = useSelector(state => (state.loginInfo && state.loginInfo.user && state.loginInfo.user.name) ? state.loginInfo.user.name : '')
+  const isUserLogin = useSelector(state => state.loginInfo && state.loginInfo.user)
+  const [userAccount, setUserAccount] = useState("");
   const [password, setPassword] = useState("");
   const [showAccountError, setShowAccountError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
@@ -50,7 +50,10 @@ function MyForm({isUserLogin, account}) {
       setShowPasswordError(false)
     }
     setIsLogin(true);
-    dispatch(login(userAccount));
+    dispatch({
+      type: 'LOGIN',
+      account: userAccount
+    });
   };
 
   const reset = (e) => {
@@ -66,7 +69,7 @@ function MyForm({isUserLogin, account}) {
     setShowAccountError(false)
     setShowPasswordError(false)
     setIsLogin(false)
-    dispatch(logout());
+    dispatch({type: 'LOGOUT'});
   };
 
   let loginForm = null;
@@ -74,7 +77,7 @@ function MyForm({isUserLogin, account}) {
     loginForm = <Card variant="outlined">
       <CardContent>
         <Typography variant="h5"
-                    component="h2">Welcome {userAccount}</Typography>
+                    component="h2">Welcome {account}</Typography>
         <Button color="primary"
                 variant="contained" onClick={signOut}>登出</Button>&nbsp;
       </CardContent>
@@ -121,11 +124,4 @@ function MyForm({isUserLogin, account}) {
   </Grid>
 }
 
-const mapStateToProps = (store) => {
-  console.log(store.loginInfo.user)
-  return {
-    account: (store.loginInfo.user) ? store.loginInfo.user.name : '',
-    isUserLogin: !!(store.loginInfo.user)
-  };
-};
-export default connect(mapStateToProps)(MyForm)
+export default MyForm
